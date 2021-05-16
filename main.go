@@ -34,5 +34,5 @@ func main() {
 	store := storage.NewStorage(mngr, cli, rh)
 	serve := server.NewServer(store)
 
-	serve.ListenAndServe(fmt.Sprintf("localhost:%s", port))
+	serve.ListenAndServe(fmt.Sprintf(":%s", port))
 }
