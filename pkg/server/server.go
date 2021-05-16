@@ -104,8 +104,8 @@ func (h *CollectionHandler) errorPump() {
 				wclose = true
 			}
 		}
-		fmt.Println("clossed errors channel")
-		close(h.errs)
+		fmt.Println("should close errors channel")
+		// close(h.errs)
 	}()
 	for err := range h.errs {
 		if err != nil {
