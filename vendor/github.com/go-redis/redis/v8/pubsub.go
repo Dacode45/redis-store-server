@@ -494,7 +494,7 @@ func (c *PubSub) initPing() {
 			case <-timer.C:
 				pingErr := c.Ping(ctx)
 				if healthy {
-					healthy = false
+					healthy = true
 				} else {
 					if pingErr == nil {
 						pingErr = errPingTimeout
