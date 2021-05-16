@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 
@@ -11,7 +12,7 @@ import (
 
 func main() {
 	namespace := os.Getenv("REDIS_STORE_NAMESPACE")
-	url := os.Getenv("REDIS_STORE_URL")
+	port := os.Getenv("PORT")
 	redisURL := os.Getenv("REDIS_STORE_REDIS_URL")
 	password := os.Getenv("REDIS_STORE_REDIS_PASSWORD")
 
@@ -19,8 +20,8 @@ func main() {
 		log.Panicln("REDIS_STORE_NAMESPACE required")
 		os.Exit(1)
 	}
-	if url == "" {
-		log.Panicln("REDIS_STORE_URL required")
+	if port == "" {
+		log.Panicln("PORT required")
 		os.Exit(1)
 	}
 	if redisURL == "" {
@@ -33,5 +34,5 @@ func main() {
 	store := storage.NewStorage(mngr, cli, rh)
 	serve := server.NewServer(store)
 
-	serve.ListenAndServe(url)
+	serve.ListenAndServe(fmt.Sprintf("localhost:%s", port))
 }
