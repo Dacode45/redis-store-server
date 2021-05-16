@@ -1,0 +1,1 @@
+web: bin/redis-store-server
